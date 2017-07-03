@@ -104,16 +104,19 @@ services:
     hostname: etcd_zan
     container_name: etcd_zan
 
-  # cat_zan:
-  #   build: ./cat/zan
-  #   volumes:
-  #     - ./common/hosts:/etc/hosts:ro
-  #     - ./opt/cat/appdatas/cat:/data/appdatas/cat
-  #     - ./opt/cat/applogs/cat:/data/applogs/cat
-  #   networks:
-  #     zan_net:
-  #       ipv4_address: 172.30.0.51
-  #   ports:
-  #     - "2251:8080"
-  #   hostname: cat_zan
-  #   container_name: cat_zan
+  cat_zan:
+    build: ./cat/zan
+    volumes:
+      - ./common/hosts:/etc/hosts:ro
+      - ./opt/cat/appdatas/cat:/data/appdatas/cat
+      - ./opt/cat/applogs/cat:/data/applogs/cat
+      - ./opt/cat/META-INF/app.properties:/cat/cat-home/src/main/resources/META-INF/app.properties
+      - ./opt/cat/META-INF/cat/client.xml:/cat/cat-home/src/main/resources/META-INF/cat/client.xml
+    networks:
+      zan_net:
+        ipv4_address: 172.30.0.51
+    ports:
+      - "2251:2280"
+      - "2252:2281"
+    hostname: cat_zan
+    container_name: cat_zan

@@ -1,5 +1,6 @@
 # docker-for-zan Docker 一键启动 zan 开发环境
 
+
 ## 包含容器
 
 1. etcd_zan
@@ -8,6 +9,7 @@
 4. php_zan_http
 5. php_zan_tcp
 6. redis_zan
+7. dianping/cat
 
 ## 准备工作
 
@@ -145,3 +147,7 @@ http://localhost:2231/index/index/novaRemoteService
 - [zan官网](http://zanphp.io/)
 - [zan-src](https://github.com/youzan/zan/)
 - [zanphp-src](https://github.com/youzan/zanphp) 
+
+## Zan* QQ交流群
+
+- 115728122
