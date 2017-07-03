@@ -25,11 +25,11 @@ $ cd zan-docker
 
 $ composer global require  "youzan/zan-installer"
 
-4. 配置 composer bin 环境变量
-在 ~/.bashrc 中 加入 并 source ~/.bashrc   (或者其他 如: .zshrc)
+4. 配置 composer bin 环境变量
+在 ~/.bashrc 中 加入 并 source ~/.bashrc   (或者其他 如: .zshrc)
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
-5. 根据官网文档说明  安装下 http_demo  与 tcp_demo
+5. 根据官网文档说明  安装下 http_demo  与 tcp_demo
    本示例安装在本仓库下的 opt/src
 
 6. 配置下 数据库 redis etcd 地址
@@ -70,9 +70,9 @@ https://github.com/redis/hiredis/releases
 zanphp.RUN_MODE = test
 zanphp.DEBUG = true
 
-所以 加载的配置文件在 confit/test 
+所以 加载的配置文件在 confit/test
 
-要修改的文件列表
+要修改的文件列表
 
 http-demp
 
