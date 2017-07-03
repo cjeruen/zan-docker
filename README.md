@@ -11,102 +11,197 @@
 6. redis_zan
 7. dianping/cat
 
+
 ## 准备工作
 
-```
+### 克隆本仓库
 
-1. 假设你本机装好了 php 与 composer
+`git clone https://github.com/cjeruen/zan-docker.git zan-docker`
 
-2. 克隆本仓库
+### zan 扩展(相关)
 
-$ git clone https://github.com/cjeruen/zan-docker.git zan-docker
+#### zan扩展
 
-$ cd zan-docker
+`git clone https://github.com/youzan/zan.git zan`
 
-3. 安装 zan-installer
+#### php-lz4 扩展
+`git clone --recursive --depth=1 https://github.com/kjdev/php-ext-lz4.git php-ext-lz4`
 
-$ composer global require  "youzan/zan-installer"
-
-4. 配置 composer bin 环境变量
-在 ~/.bashrc 中 加入 并 source ~/.bashrc   (或者其他 如: .zshrc)
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-
-5. 根据官网文档说明  安装下 http_demo  与 tcp_demo
-   本示例安装在本仓库下的 opt/src
-
-   opt/src/http-demo
-   opt/src/tcp-demo
-
-   这里要注意下
-   这里要注意下
-   这里要注意下  为了 共用一个 php 镜像   这步必须做哈
-   不然 php 容器没法起来
-
-   cp opt/src/http-demo/bin/httpd opt/src/http-demo/bin/zan
-   cp opt/src/tcp-demo/bin/nova opt/src/tcp-demo/bin/zan
-
-
-6. 配置下 数据库 redis etcd 地址
-
-
-7. 准备好 php 镜像容器需要的代码  
-
-cd zan-docker/php/src
-
-$ git clone https://github.com/youzan/zan.git zan
-$ git clone --recursive --depth=1 https://github.com/kjdev/php-ext-lz4.git php-ext-lz4
-
-下载 hiredis 代码 注意 改名 为 hiredis.tar.gz
+#### hiredis 扩展
 
 https://github.com/redis/hiredis/releases
 
-关于 php_swoole.h  解决  sockets 扩展装好 但是报错的问题
-改了一下  自己对比下 原来的 php_swoole.h 
+### zanphp
 
-#ifdef SW_SOCKETS
-#if PHP_VERSION_ID >= 50301
-#include "/usr/src/php/ext/sockets/php_sockets.h"
-#define SWOOLE_SOCKETS_SUPPORT
-#else
-#error "Enable sockets support, require sockets extension."
-#endif
-#endif
+#### 安装 zanphp-installer
+
+composer global require  "youzan/zan-installer"
+
+#### 配置环境变量 (可选 但是建议配置)
+
+```
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+```
+
+在 ~/.bashrc 中 加入
+
+(或者其他 如: .zshrc)
+
+source ~/.bashrc
+
+#### 生成zanphp项目
+
+`zan`
+
+或者 (没有配置环境变量选这个)
+
+`~/.composer/vendor/bin/zan`
+
+说明: 
+
+生成两个项目  http-demo   tcp-demo
+
+并 (只是为了 共用一个php镜像)
+
+`copy http-demo/bin/httpd http-demo/bin/zan`
+
+`copy tcp-demo/bin/nova http-demo/bin/zan`
+
+### 下载cat相关
+
+#### jdk
+
+jdk 不超过 7u79 版本
+
+jdk-7u79-linux-x64.tar.gz
+
+#### maven
+
+apache-maven-3.5.0-bin.tar.gz
+
+#### cat 代码
+
+`git clone https://github.com/dianping/cat.git cat`
+
+#### cat-mvn-repo
+
+cat 仓库下 的 mvn-repo 分支
+
+自行切换分支 并拷贝出来
+
+
+## 路径整理
+
+```
+// lz4 扩展
+zan-docker/php/zan/src/php-ext-lz4
+
+// zan 扩展
+zan-docker/php/zan/src/zan
+
+// hiredis 扩展
+zan-docker/php/zan/src/hiredis.tar.gz
+
+// cat 代码
+zan-docker/cat/zan/src/cat
+
+// mvn-repo
+zan-docker/cat/zan/src/mvn-repo
+
+// jdk
+zan-docker/cat/zan/src/jdk-7u79-linux-x64.tar.gz
+
+// maven
+zan-docker/cat/zan/src/apache-maven-3.5.0-bin.tar.gz
+
+// http-demo 
+zan-docker/opt/http-demo
+zan-docker/opt/tcp-demo
 
 ```
 
-## 配置说明
+## 配置相关
+
+```
+// php.ini 配置了 test 环境
+zan-docker/php/zan/php.ini
+
+// 项目服务配置
+
+// redis 地址
+// etcd  地址
+// cat   地址
+
+// http-demo  mysql
+zan-docker/opt/src/http-demo/resource/config/test/connection/mysql.php
+
+// http-demo  redis
+zan-docker/opt/src/http-demo/resource/config/test/connection/redis.php
+
+// http-demo  etcd
+zan-docker/opt/src/http-demo/resource/config/test/registry.php
+
+// http-demo  cat
+zan-docker/opt/src/http-demo/resource/config/test/connection/tcp.php
+
+// http-demo  cat  "run" => true,
+zan-docker/opt/src/http-demo/resource/config/test/monitor/trace.php
+
+// tcp-demo  mysql
+zan-docker/opt/src/http-demo/resource/config/test/connection/mysql.php
+
+// tcp-demo  redis
+zan-docker/opt/src/http-demo/resource/config/test/connection/redis.php
+
+// tcp-demo  etcd
+zan-docker/opt/src/http-demo/resource/config/test/registry.php
+
+// tcp-demo  cat
+zan-docker/opt/src/http-demo/resource/config/test/connection/tcp.php
+
+// tcp-demo  cat  "run" => true,
+zan-docker/opt/src/tcp-demo/resource/config/test/monitor/trace.php
+
+
+// cat 其他配置
+zan-docker/opt/cat/META-INF/app.properties
+
+// 主要配置这个就行
+zan-docker/opt/cat/META-INF/cat/client.xml
 
 ```
 
-因为我在 php.ini 里面加入了 
+## 数据库相关
 
-[zan]
-zanphp.RUN_MODE = test
-zanphp.DEBUG = true
-
-所以 加载的配置文件在 confit/test
-
-要修改的文件列表
-
-http-demp
-
-opt/src/http-demo/resource/config/test/connection/mysql.php
-opt/src/http-demo/resource/config/test/connection/redis.php
-opt/src/http-demo/resource/config/test/registry.php
-
-tcp-demo
-
-opt/src/http-demo/resource/config/test/connection/mysql.php
-opt/src/http-demo/resource/config/test/connection/redis.php
-opt/src/http-demo/resource/config/test/registry.php
+### cat 数据
 
 ```
+连接 mysql_cat 数据库
+
+创建 cat 数据库
+
+根据创建表
+zan-docker/cat/zan/src/cat/script/Cat.sql
+
+```
+
+### zanphp 测试数据
+
+```
+连接 mysql_zan 数据库
+
+创建数据库( 上面mysql配置中填的数据库 )
+
+创建 测试表 tables  
+
+随便整点数据
+
+```
+
 
 ## 运行容器
 
 ```
-
-确保 准备工作里面中 需要的 代码都下载准备好了
 
 $ cd zan-docker
 
@@ -120,26 +215,21 @@ $ docker-compose up     // 可以看到输出日志
 
 ## 查看效果
 
-http://localhost:2231/index/index/index
+- http://localhost:2231/index/index/index
 
-http://localhost:2231/index/index/json
+- http://localhost:2231/index/index/json
 
-http://localhost:2231/index/index/showTpl
+- http://localhost:2231/index/index/showTpl
 
-```
-// 这个你需要创建个 表 加点数据 看效果  
-// zan框架 默认测试表 名称: tables
-// 连接 到 mysql_zan 数据库
-// 创建 tables 表  加点字段
-// 插入点数据
-```
-http://localhost:2231/index/index/dbOperation
+- http://localhost:2231/index/index/dbOperation
 
-http://localhost:2231/index/index/redisOperation
+- http://localhost:2231/index/index/redisOperation
 
-http://localhost:2231/index/index/httpRemoteService
+- http://localhost:2231/index/index/httpRemoteService
 
-http://localhost:2231/index/index/novaRemoteService
+- http://localhost:2231/index/index/novaRemoteService
+
+- http://localhost:2252/cat
 
 
 ## 相关连接
@@ -151,3 +241,4 @@ http://localhost:2231/index/index/novaRemoteService
 ## Zan* QQ交流群
 
 - 115728122
+
