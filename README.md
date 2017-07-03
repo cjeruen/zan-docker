@@ -17,9 +17,9 @@
 
 2. 克隆本仓库
 
-$ git clone xxx zan_docker
+$ git clone https://github.com/cjeruen/zan-docker.git zan-docker
 
-$ cd zan_docker
+$ cd zan-docker
 
 3. 安装 zan-installer
 
@@ -37,7 +37,7 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 7. 准备好 php 镜像容器需要的代码  
 
-cd zan_docker/php/src
+cd zan-docker/php/src
 
 $ git clone https://github.com/youzan/zan.git zan
 $ git clone --recursive --depth=1 https://github.com/kjdev/php-ext-lz4.git php-ext-lz4
@@ -94,7 +94,7 @@ opt/src/http-demo/resource/config/test/registry.php
 
 确保 准备工作里面中 需要的 代码都下载准备好了
 
-$ cd zan_docker
+$ cd zan-docker
 
 $ docker-compose build
 
