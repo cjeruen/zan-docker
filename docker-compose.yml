@@ -1,0 +1,119 @@
+version: '3'
+
+networks:
+  zan_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.0.0/24
+          # gateway: 172.30.0.1
+          # remove gateway from yml version 3
+
+# IP 分配
+# mysql 172.30.0.11 172.30.0.12
+# redis 172.30.0.21 172.30.0.22
+
+# PORT 分配
+# 22 + ip 最后一位
+# mysql  2211  2212
+# redis  2221  2222
+
+services:
+
+  mysql_zan:
+    build: ./mysql/zan
+    volumes:
+      - ./opt/mysql/zan/db:/var/lib/mysql
+      - ./common/hosts:/etc/hosts:ro
+    networks:
+      zan_net:
+        ipv4_address: 172.30.0.11
+    ports:
+      - "2211:3306"
+    hostname: mysql_zan
+    container_name: mysql_zan
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+
+  mysql_cat:
+    build: ./mysql/cat
+    volumes:
+      - ./opt/mysql/cat/db:/var/lib/mysql
+      - ./common/hosts:/etc/hosts:ro
+    networks:
+      zan_net:
+        ipv4_address: 172.30.0.12
+    ports:
+      - "2212:3306"
+    hostname: mysql_cat
+    container_name: mysql_cat
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+
+  redis_zan:
+    build: ./redis/zan
+    volumes:
+      - ./common/hosts:/etc/hosts:ro
+    networks:
+      zan_net:
+        ipv4_address: 172.30.0.21
+    ports:
+      - "2221:6379"
+    hostname: redis_zan
+    container_name: redis_zan
+
+  php_zan_http:
+    build: ./php/zan
+    volumes:
+      - ./common/hosts:/etc/hosts:ro
+      - ./opt/src/http-demo:/zan
+    networks:
+      zan_net:
+        ipv4_address: 172.30.0.31
+    ports:
+      - "2231:8030"
+    hostname: php_zan_http
+    container_name: php_zan_http
+
+  php_zan_tcp:
+    build: ./php/zan
+    volumes:
+      - ./common/hosts:/etc/hosts:ro
+      - ./opt/src/tcp-demo:/zan
+    networks:
+      zan_net:
+        ipv4_address: 172.30.0.32
+    ports:
+      - "2232:8100"
+    hostname: php_zan_tcp
+    container_name: php_zan_tcp
+
+  etcd_zan:
+    build: ./etcd/zan
+    volumes:
+      - ./common/hosts:/etc/hosts:ro
+    networks:
+      zan_net:
+        ipv4_address: 172.30.0.41
+    ports:
+      - "2241:2379"
+      - "2242:2380"
+    hostname: etcd_zan
+    container_name: etcd_zan
+
+  # cat_zan:
+  #   build: ./cat/zan
+  #   volumes:
+  #     - ./common/hosts:/etc/hosts:ro
+  #     - ./opt/cat/appdatas/cat:/data/appdatas/cat
+  #     - ./opt/cat/applogs/cat:/data/applogs/cat
+  #   networks:
+  #     zan_net:
+  #       ipv4_address: 172.30.0.51
+  #   ports:
+  #     - "2251:8080"
+  #   hostname: cat_zan
+  #   container_name: cat_zan

@@ -1,0 +1,14 @@
+127.0.0.1       localhost
+
+172.30.0.11     mysql_zan
+172.30.0.12     mysql_cat
+
+172.30.0.21     redis_zan
+
+172.30.0.31     php_zan_http
+172.30.0.32     php_zan_tcp
+
+
+172.30.0.41     etcd_zan
+
+172.30.0.51     cat_zan
