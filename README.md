@@ -115,8 +115,8 @@ zan-docker/cat/zan/src/jdk-7u79-linux-x64.tar.gz
 zan-docker/cat/zan/src/apache-maven-3.5.0-bin.tar.gz
 
 // http-demo 
-zan-docker/opt/http-demo
-zan-docker/opt/tcp-demo
+zan-docker/opt/src/http-demo
+zan-docker/opt/src/tcp-demo
 
 ```
 
