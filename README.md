@@ -148,16 +148,16 @@ zan-docker/opt/src/http-demo/resource/config/test/connection/tcp.php
 zan-docker/opt/src/http-demo/resource/config/test/monitor/trace.php
 
 // tcp-demo  mysql
-zan-docker/opt/src/http-demo/resource/config/test/connection/mysql.php
+zan-docker/opt/src/tcp-demo/resource/config/test/connection/mysql.php
 
 // tcp-demo  redis
-zan-docker/opt/src/http-demo/resource/config/test/connection/redis.php
+zan-docker/opt/src/tcp-demo/resource/config/test/connection/redis.php
 
 // tcp-demo  etcd
-zan-docker/opt/src/http-demo/resource/config/test/registry.php
+zan-docker/opt/src/tcp-demo/resource/config/test/registry.php
 
 // tcp-demo  cat
-zan-docker/opt/src/http-demo/resource/config/test/connection/tcp.php
+zan-docker/opt/src/tcp-demo/resource/config/test/connection/tcp.php
 
 // tcp-demo  cat  "run" => true,
 zan-docker/opt/src/tcp-demo/resource/config/test/monitor/trace.php
