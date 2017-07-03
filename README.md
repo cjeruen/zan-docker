@@ -124,7 +124,13 @@ http://localhost:2231/index/index/json
 
 http://localhost:2231/index/index/showTpl
 
-// 这个你需要创建个 表 加点数据 看效果  表名称: table
+```
+// 这个你需要创建个 表 加点数据 看效果  
+// zan框架 默认测试表 名称: tables
+// 连接 到 mysql_zan 数据库
+// 创建 tables 表  加点字段
+// 插入点数据
+```
 http://localhost:2231/index/index/dbOperation
 
 http://localhost:2231/index/index/redisOperation
