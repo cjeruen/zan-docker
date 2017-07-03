@@ -1,4 +1,4 @@
-# docker-for-zan 基于 Dockerfile 与 docker-compose 一键启动 zan 开发环境
+# docker-for-zan Docker 一键启动 zan 开发环境
 
 ## 包含容器
 
@@ -31,6 +31,18 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 5. 根据官网文档说明  安装下 http_demo  与 tcp_demo
    本示例安装在本仓库下的 opt/src
+
+   opt/src/http-demo
+   opt/src/tcp-demo
+
+   这里要注意下
+   这里要注意下
+   这里要注意下  为了 共用一个 php 镜像   这步必须做哈
+   不然 php 容器没法起来
+
+   cp opt/src/http-demo/bin/httpd opt/src/http-demo/bin/zan
+   cp opt/src/tcp-demo/bin/nova opt/src/tcp-demo/bin/zan
+
 
 6. 配置下 数据库 redis etcd 地址
 
