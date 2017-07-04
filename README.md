@@ -27,7 +27,7 @@
 #### php-lz4 扩展
 `git clone --recursive --depth=1 https://github.com/kjdev/php-ext-lz4.git php-ext-lz4`
 
-#### hiredis 扩展
+#### hiredis
 
 https://github.com/redis/hiredis/releases
 

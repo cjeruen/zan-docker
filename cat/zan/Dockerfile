@@ -36,6 +36,10 @@ RUN    ln -s /usr/local/jdk1.7.0_79 /usr/local/java \
     && cd /cat \
     && mvn clean install -DskipTests
 
+# 时区设置  建议这句 丢在上个 RUN 中
+# 上个 RUN 本地缓存了 所以我暂时不加了
+RUN echo "Asia/Shanghai" > /etc/timezone
+
 EXPOSE 2280
 EXPOSE 2281
 
