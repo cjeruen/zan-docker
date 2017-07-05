@@ -211,6 +211,18 @@ $ docker-compose up -d
 或者
 $ docker-compose up     // 可以看到输出日志
 
+推荐姿势
+$ docker-compose up -d
+查看输出log
+$ docker logs php_zan_http -f
+$ docker logs php_zan_tcp -f
+...
+...
+
+修改代码后重启
+如
+$ docker restart php_zan_http
+
 ```
 
 ## 查看效果
