@@ -2,8 +2,6 @@ FROM php:7.1
 
 COPY php.ini         /usr/local/etc/php/php.ini
 COPY sources.list    /etc/apt/sources.list
-COPY src/zan/zan-extension /usr/src/php/ext/zan
-COPY php_swoole.h /usr/src/php/ext/zan/php_swoole.h
 
 COPY src/php-ext-lz4 /usr/src/php/ext/lz4
 
@@ -53,12 +51,14 @@ RUN apt-get update && apt-get install -y \
 
     && docker-php-ext-install -j$(nproc) lz4 \
     && docker-php-ext-install -j$(nproc) sockets \
-
-    && docker-php-ext-configure zan --enable-sockets --enable-async-redis  --enable-openssl \
-    && docker-php-ext-install -j$(nproc) zan \
-
-
     && rm -r /var/lib/apt/lists/*
+
+# 拆开方便 上面的 run 缓存 后面更新 zan 方便
+COPY src/zan/zan-extension /usr/src/php/ext/zan
+COPY php_swoole.h /usr/src/php/ext/zan/php_swoole.h
+
+RUN docker-php-ext-configure zan --enable-sockets --enable-async-redis  --enable-openssl \
+    && docker-php-ext-install -j$(nproc) zan
 
 EXPOSE 8030
 
