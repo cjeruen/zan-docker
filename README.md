@@ -78,7 +78,7 @@ Use default namespace: Com\Youzan\ZanHttpDemo\
 
 ### 5. 配置参数
 
-## 配置相关 参考 zanphp-config-demo 中的配置
+#### 配置相关 参考 zanphp-config-demo 中的配置
 
 `zan-docker/php/zan/php.ini`
 
