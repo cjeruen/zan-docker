@@ -1,0 +1,5 @@
+*
+!.gitignore
+!client.xml
+!datasources.xml
+!server.xml

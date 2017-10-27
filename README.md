@@ -110,6 +110,22 @@ Use default namespace: Com\Youzan\ZanHttpDemo\
 
 - [http://localhost:8030/index/index/novaRemoteService](http://localhost:8030/index/index/novaRemoteService)
 
+### 8. 监控平台 cat 配置 (默认注释没有开启了)
+
+- 下载 jdk 到 cat/zan/src/jdk1.8.0_152.tar.gz (上传限制 只能外部链接了)
+
+- 链接: [https://pan.baidu.com/s/1gfGP6Qf](https://pan.baidu.com/s/1gfGP6Qf)  密码: b292
+
+- 取消 docker-composer.yml 中的 cat-zan 区域的注释
+
+- 连接 mysql_cat 创建 cat 数据库
+
+- 创建 表 cat/zan/src/Cat.sql
+
+- 重新 docker-compose build 并启动容器
+
+- 查看演示: [http://localhost:2281/cat](http://localhost:2281/cat)
+
 ## 相关连接
 
 - [zan官网](http://zanphp.io/)
