@@ -112,10 +112,6 @@ Use default namespace: Com\Youzan\ZanHttpDemo\
 
 ### 8. 监控平台 cat 配置 (默认注释没有开启了)
 
-- 下载 jdk 到 cat/zan/src/jdk1.8.0_152.tar.gz (上传限制 只能外部链接了)
-
-- 链接: [https://pan.baidu.com/s/1gfGP6Qf](https://pan.baidu.com/s/1gfGP6Qf)  密码: b292
-
 - 取消 docker-composer.yml 中的 cat-zan 区域的注释
 
 - 连接 mysql_cat 创建 cat 数据库

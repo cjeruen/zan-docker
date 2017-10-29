@@ -96,21 +96,21 @@ services:
     hostname: etcd_zan
     container_name: etcd_zan
 
-  # cat_zan:
-  #   build: ./cat/zan
-  #   volumes:
-  #     - ./common/hosts:/etc/hosts:ro
-  #     - ./cat/zan/appdatas/cat:/data/appdatas/cat
-  #     - ./cat/zan/applogs/cat:/data/applogs/cat
-  #     - ./cat/zan/META-INF/app.properties:/cat/cat-home/src/main/resources/META-INF/app.properties
-  #     - ./cat/zan/META-INF/cat/client.xml:/cat/cat-home/src/main/resources/META-INF/cat/client.xml
-  #   networks:
-  #     zan:
-  #       ipv4_address: 172.30.0.51
-  #   working_dir: /cat/cat-2.0.0/cat-home
-  #   command: mvn jetty:run
-  #   ports:
-  #     - "2280:2280"
-  #     - "2281:2281"
-  #   hostname: cat_zan
-  #   container_name: cat_zan
+  cat_zan:
+    build: ./cat/zan
+    volumes:
+      - ./common/hosts:/etc/hosts:ro
+      # ./cat/zan/data/appdatas/cat/client.xml 配置 cat服务端 信息
+      # ./cat/zan/data/appdatas/cat/datasources..xml 配置 数据库 信息
+      - ./cat/zan/data:/data
+      # 下面两行可选 配置 cat本身作为客户端时的 名称 默认 为 cat
+      - ./cat/zan/META-INF/app.properties:/cat/cat-home/src/main/resources/META-INF/app.properties
+      - ./cat/zan/META-INF/cat/client.xml:/cat/cat-home/src/main/resources/META-INF/cat/client.xml
+    networks:
+      zan:
+        ipv4_address: 172.30.0.51
+    ports:
+      - "2280:2280"
+      - "2281:2281"
+    hostname: cat_zan
+    container_name: cat_zan

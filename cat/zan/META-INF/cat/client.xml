@@ -1,5 +1,5 @@
 <config mode="client" xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="config.xsd">
-    <domain id="Cat"/>
-    <domain id="http-demo"/>
-    <domain id="tcp-demo"/>
+    <!--  cat 本身作为客户端 的应用名称配置  -->
+    <!--  优先 取 app.properties 中  -->
+    <domain id="cat"/>
 </config>
