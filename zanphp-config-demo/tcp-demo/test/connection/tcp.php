@@ -3,7 +3,7 @@
 return [
     'trace' => [
         'engine'=> 'tcp',
-        'host' => 'etcd_zan',
+        'host' => 'cat_zan',
         'port' => 2280,
         'timeout' => 5000,
         'hasRecv' => false,

@@ -32,9 +32,10 @@ RUN cd /opt/hiredis-0.13.3 \
     && ln -s /usr/local/lib/libhiredis.so /usr/local/lib/libhiredis_linux.so \
     && ln -s /usr/local/lib/libhiredis.a /usr/local/lib/libhiredis_linux.a
 
-COPY src/zan/zan-extension /usr/src/php/ext/zan
+# v1: c8ced8aee79d91acd8a9f755a25ac7379ae95225
+ADD src/zan-extension.tar.gz /usr/src/php/ext
 
-RUN docker-php-ext-configure zan --enable-openssl \
-    && docker-php-ext-install -j$(nproc) zan
+RUN docker-php-ext-configure zan-extension --enable-openssl \
+    && docker-php-ext-install -j$(nproc) zan-extension
 
 EXPOSE 8030
