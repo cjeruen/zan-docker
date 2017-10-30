@@ -20,6 +20,15 @@
 
 `docker-compose build && docker-compose up -d`
 
+
+### 4. 创建 cat 需要的数据库
+
+> 1. 连接 mysql_cat 数据库 创建  cat 库
+
+> 2. 创建 cat 相关表  SQL: cat/zan/src/Cat.sql
+
+> 3. 查看 cat 监控 数据的时候 可能会有些 sql 相关的 failure 无需理会 因为 数据库还没创建 或者 数据库晚于 cat 启动的原因
+
 ## 查看效果
 
 - [http://localhost:8030/index/index/index](http://localhost:8030/index/index/index)
