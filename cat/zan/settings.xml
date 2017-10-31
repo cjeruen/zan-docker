@@ -6,9 +6,9 @@
         <!-- 阿里云仓库 -->
         <mirror>
             <id>alimaven</id>
-            <mirrorOf>central</mirrorOf>
             <name>aliyun maven</name>
-            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <mirrorOf>central</mirrorOf>
         </mirror>
     
         <!-- 中央仓库1 -->
