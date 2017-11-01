@@ -1,5 +1,6 @@
 127.0.0.1       localhost
 
+172.30.0.10     nginx_zan
 172.30.0.11     php_zan_http
 172.30.0.12     php_zan_tcp
 

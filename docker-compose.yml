@@ -9,10 +9,27 @@ networks:
         - subnet: 172.30.0.0/24
 
 services:
+    
+  nginx_zan:
+    build: ./nginx/zan
+    volumes:
+      - ./common/hosts:/etc/hosts:ro
+      - ./nginx/zan/sites-enabled:/etc/nginx/conf.d
+      - ./nginx/zan/log:/log
+      - ./opt/http-demo:/zanphp/http-demo
+    networks:
+      zan:
+        ipv4_address: 172.30.0.10
+    ports:
+      - "8030:80"
+    hostname: nginx_zan
+    container_name: nginx_zan
+
   php_zan_http:
     build: ./php/zan
     volumes:
       - ./common/hosts:/etc/hosts:ro
+      - ./php/zan/php.ini:/usr/local/etc/php/php.ini
       - ./opt/http-demo:/zanphp/http-demo
     working_dir: /zanphp/http-demo
     command: php bin/httpd
@@ -20,7 +37,7 @@ services:
       zan:
         ipv4_address: 172.30.0.11
     ports:
-      - "8030:8030"
+      - "8031:8030"
     depends_on:
       - php_zan_tcp
     hostname: php_zan_http
@@ -40,6 +57,7 @@ services:
       - "8100:8100"
     depends_on:
       - etcd_zan
+      - cat_zan
     hostname: php_zan_tcp
     container_name: php_zan_tcp
 
