@@ -10,9 +10,9 @@ return [
         'port' => 3306,
         'pool'  => [
             'maximum-connection-count' => 50,
-            'minimum-connection-count' => 0,
+            'minimum-connection-count' => 1,
             'heartbeat-time' => 5000,
-            'init-connection'=> 0,
+            'init-connection'=> 1,
         ],
     ],
 ];

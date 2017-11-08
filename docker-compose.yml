@@ -61,6 +61,21 @@ services:
     hostname: php_zan_tcp
     container_name: php_zan_tcp
 
+  php_zan_websocket:
+    build: ./php/zan
+    volumes:
+      - ./common/hosts:/etc/hosts:ro
+      - ./opt/websocket-demo:/zanphp/websocket-demo
+    working_dir: /zanphp/websocket-demo
+    command: php bin/websocket
+    networks:
+      zan:
+        ipv4_address: 172.30.0.13
+    ports:
+      - "8032:8030"
+    hostname: php_zan_websocket
+    container_name: php_zan_websocket
+  
   mysql_zan:
     build: ./mysql/zan
     volumes:

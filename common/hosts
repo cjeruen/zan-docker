@@ -3,6 +3,7 @@
 172.30.0.10     nginx_zan
 172.30.0.11     php_zan_http
 172.30.0.12     php_zan_tcp
+172.30.0.13     php_zan_websocket
 
 172.30.0.21     mysql_zan
 172.30.0.22     mysql_cat
